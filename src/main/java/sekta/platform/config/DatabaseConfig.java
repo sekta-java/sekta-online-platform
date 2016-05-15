@@ -1,4 +1,4 @@
-package sekta.platform.core.config;
+package sekta.platform.config;
 
 import java.util.Properties;
 
