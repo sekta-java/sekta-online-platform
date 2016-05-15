@@ -20,7 +20,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <!--JSP-->
+        <!--For JSP-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-tomcat</artifactId>
@@ -33,7 +33,7 @@
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
         </dependency>
-        <!--/JSP-->
+        <!--/For JSP-->
 
         <!--Hibernate-->
         <dependency>
