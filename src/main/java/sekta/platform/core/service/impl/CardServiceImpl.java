@@ -15,29 +15,36 @@ public class CardServiceImpl implements CardService {
     private CardDao cardDao;
 
     @Override
+    @Transactional
     public List<Card> getAllCards() {
-        return null;
+        return cardDao.findAll();
     }
 
     @Override
-    public Card getCardById() {
-        return null;
+    @Transactional
+    public Card getCardById(Long id) {
+        return cardDao.getById(id);
     }
 
     @Override
     @Transactional
     public Card createCard(Card card) {
-        cardDao.save(card);
+        cardDao.create(card);
         return card;
     }
 
     @Override
+    @Transactional
     public Card updateCard(Card card) {
-        return null;
+        cardDao.update(card);
+        return card;
     }
 
     @Override
+    @Transactional
     public void deleteCard(Long id) {
-
+        Card card = new Card();
+        card.setCardId(id);
+        cardDao.delete(card);
     }
 }
