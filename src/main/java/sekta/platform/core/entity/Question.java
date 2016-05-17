@@ -15,8 +15,8 @@ public class Question {
     @JoinColumn(name = "tests_id")
     private TestTask testTask;
 
-//    @OneToMany(mappedBy =  "answers")
-//    private List<Answer> answers;
+    @OneToMany(mappedBy =  "question")
+    private List<Answer> answers;
 
     public Integer getId() {
         return id;
@@ -40,5 +40,13 @@ public class Question {
 
     public void setTestTask(TestTask testTask) {
         this.testTask = testTask;
+    }
+
+    public List<Answer> getAnswers() {
+        return answers;
+    }
+
+    public void setAnswers(List<Answer> answers) {
+        this.answers = answers;
     }
 }

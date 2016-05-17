@@ -6,12 +6,10 @@ import java.util.List;
 @Entity
 public class TestTask {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-
 
     @OneToMany(mappedBy =  "testTask")
     private List<Question> questions;

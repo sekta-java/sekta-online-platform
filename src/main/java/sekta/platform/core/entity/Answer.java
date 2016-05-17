@@ -1,19 +1,20 @@
 package sekta.platform.core.entity;
 
-
 import javax.persistence.*;
 
+@Entity
 public class Answer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //autoincrement
     private Integer id;
 
     private String text;
-    private Boolean right;
+
+    private Boolean isCorrect;
 
     @ManyToOne
-    @JoinColumn(name = "questions_id")
-    private Question questions;
+    @JoinColumn(name = "question_id")
+    private Question question;
 
     public Integer getId() {
         return id;
@@ -31,19 +32,19 @@ public class Answer {
         this.text = text;
     }
 
-    public Boolean getRight() {
-        return right;
+    public Boolean getIsCorrect() {
+        return isCorrect;
     }
 
-    public void setRight(Boolean right) {
-        this.right = right;
+    public void setIsCorrect(Boolean isCorrect) {
+        this.isCorrect = isCorrect;
     }
 
-    public Question getQuestions() {
-        return questions;
+    public Question getQuestion() {
+        return question;
     }
 
-    public void setQuestions(Question questions) {
-        this.questions = questions;
+    public void setQuestion(Question question) {
+        this.question = question;
     }
 }
