@@ -21,7 +21,7 @@ public class ForumCategory {
     private String title;
 
     @OneToMany(mappedBy = "forumCategory")
-    private Set<Message> messageSet= new HashSet<>();
+    private Set<Message> messageSet= new HashSet<Message>();
 
 
     public ForumCategory() {
