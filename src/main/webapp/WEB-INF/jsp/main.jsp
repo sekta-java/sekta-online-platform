@@ -20,6 +20,6 @@
     <input type="text" name="name" value="${name}">
     <input type="submit" value="Send">
 </form>
-
+<a href="user"><button>Manage users</button></a>
 </body>
 </html>
