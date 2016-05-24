@@ -4,10 +4,6 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * Created by Retro on 14.05.2016.
- */
-
 @Entity
 @Table(name="users_table")
 public class User {
@@ -17,6 +13,7 @@ public class User {
     @Column(name = "id")
     private Long id;
 
+    //TODO: Please add unique key
     @Column(name="email")
     private String email;
 
