@@ -21,11 +21,49 @@
     <link rel="stylesheet" href="/static/user-list.css">
 </head>
 <body class="container">
-<a href="/user/create" class="new-user">
-    <button class="col-xs-2 btn btn-primary">New user</button>
-</a>
+<%--<a href="/user/create" class="new-user">--%>
+    <%--<button class="col-xs-2 btn btn-primary">New user</button>--%>
+<%--</a>--%>
 
-<p class="text-center text-success col-offset-xs-12 message">${message}</p>
+<!-- Trigger the modal with a button -->
+<div class="new-user">
+<button type="button" class="btn btn-primary col-xs-2" data-toggle="modal" data-target="#myModal">New user</button>
+</div>
+<p class="text-center text-success col-offset-xs-12 bg-success message">${message}</p>
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h1>User's creation</h1>
+            </div>
+            <div class="modal-body">
+                <form action="/user/create" method="post" class="">
+                    <div class="form-group">
+                        <label for="user-name">Username</label>
+                        <input type="text" class="form-control" name="userName" id="user-name" placeholder="Peter">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" class="form-control" name="email" id="email" placeholder="peter.ivanov@gmail.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="text" class="form-control" name="password" id="password" placeholder="Ivanov">
+                    </div>
+                    <button type="submit" class="btn btn-primary col-xs-12">Add</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
 
 <table class="table table-striped text-center users">
     <tr>
