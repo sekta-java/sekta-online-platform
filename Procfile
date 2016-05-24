@@ -1,0 +1,1 @@
+web: java -Dserver.port=$PORT -jar  target/sekta-online-platform-1.0-SNAPSHOT.jar
