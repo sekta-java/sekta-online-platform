@@ -9,30 +9,14 @@ import java.util.Set;
  */
 
 @Entity
-@Table(name = "forum_category_table")
-public class ForumCategory {
+public class ForumCategory extends EntityModel {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
-
-    @Column(name="title")
     private String title;
 
     @OneToMany(mappedBy = "forumCategory")
-    private Set<Message> messageSet= new HashSet<>();
-
+    private Set<Message> messageSet= new HashSet<Message>();
 
     public ForumCategory() {
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getTitle() {

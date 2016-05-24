@@ -9,32 +9,21 @@ import java.util.Set;
  */
 
 @Entity
-@Table(name="users_table")
-public class User {
+public class User extends EntityModel{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
-
-    @Column(name="email")
     private String email;
 
-    @Column(name="user_name")
     private String userName;
 
-    @Column(name="password")
     private String password;
 
     @OneToMany(mappedBy = "user")
-    private Set<Grade> gradeSet= new HashSet<>();
+    private Set<Grade> gradeSet= new HashSet<Grade>();
 
     @OneToMany(mappedBy = "user")
-    private Set<Message> messageSet= new HashSet<>();
-
+    private Set<Message> messageSet= new HashSet<Message>();
 
     public User() {}
-
 
     public String getEmail() {
         return email;
@@ -58,14 +47,6 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public Set<Grade> getGradeSet() {

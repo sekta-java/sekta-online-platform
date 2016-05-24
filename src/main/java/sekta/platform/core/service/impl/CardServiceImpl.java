@@ -44,7 +44,7 @@ public class CardServiceImpl implements CardService {
     @Transactional
     public void deleteCard(Long id) {
         Card card = new Card();
-        card.setCardId(id);
+        card.setId(id);
         cardDao.delete(card);
     }
 }

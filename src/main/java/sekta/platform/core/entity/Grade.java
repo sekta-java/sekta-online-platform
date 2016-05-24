@@ -7,41 +7,25 @@ import javax.persistence.*;
  */
 
 @Entity
-@Table(name = "grade_table")
-public class Grade {
+public class Grade extends EntityModel {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
-    private Long id;
+    @Enumerated(EnumType.STRING)
+    private GradeEnum grade;
 
-    @Column(name="grade")
-    private Integer grade;
-
-    @Column(name = "comment")
     private String comment;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-
     public Grade() {
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public int getGrade() {
+    public GradeEnum getGrade() {
         return grade;
     }
 
-    public void setGrade(int grade) {
+    public void setGrade(GradeEnum grade) {
         this.grade = grade;
     }
 

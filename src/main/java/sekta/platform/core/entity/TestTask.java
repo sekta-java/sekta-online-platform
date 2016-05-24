@@ -4,25 +4,12 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class TestTask {
+public class TestTask extends EntityModel{
 
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
     private String name;
-
 
     @OneToMany(mappedBy =  "testTask")
     private List<Question> questions;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;

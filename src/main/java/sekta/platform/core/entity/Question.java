@@ -1,30 +1,24 @@
 package sekta.platform.core.entity;
 
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-public class Question {
+public class Question extends EntityModel{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
     private String text;
+
+    @OneToMany(mappedBy = "question")
+    private Set<Answer> answerSet= new HashSet<Answer>();
 
     @ManyToOne
     @JoinColumn(name = "tests_id")
     private TestTask testTask;
 
-//    @OneToMany(mappedBy =  "answers")
-//    private List<Answer> answers;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getText() {
         return text;
@@ -40,5 +34,14 @@ public class Question {
 
     public void setTestTask(TestTask testTask) {
         this.testTask = testTask;
+    }
+
+
+    public Set<Answer> getAnswerSet() {
+        return answerSet;
+    }
+
+    public void setAnswerSet(Set<Answer> answerSet) {
+        this.answerSet = answerSet;
     }
 }
