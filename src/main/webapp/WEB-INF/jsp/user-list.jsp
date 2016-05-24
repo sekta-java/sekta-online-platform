@@ -21,9 +21,6 @@
     <link rel="stylesheet" href="/static/user-list.css">
 </head>
 <body class="container">
-<%--<a href="/user/create" class="new-user">--%>
-    <%--<button class="col-xs-2 btn btn-primary">New user</button>--%>
-<%--</a>--%>
 
 <!-- Trigger the modal with a button -->
 <div class="new-user">
@@ -76,7 +73,12 @@
             <td>${user.userName}</td>
             <td>${user.email}</td>
         <td><a href="/user/edit/${user.id}"><i class="glyphicon glyphicon-pencil" style="color: #d9b144;"></i></a></td>
-        <td><a href="/user/delete/${user.id}"><i class="glyphicon glyphicon-remove" style="color: #d90000;"></i></a></td>
+        <td>
+            <form action="/user/delete" method="post">
+                <input type="hidden" name="id" value="${user.id}">
+            <button type="submit" style="height: 0; border: 0; padding: 0;"><i class="glyphicon glyphicon-remove" style="color: #d90000;"></i></button>
+            </form>
+        </td>
     </tr>
     </c:forEach>
 </table>

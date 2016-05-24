@@ -51,9 +51,10 @@ public class UserController {
         return "user-list";
     }
 
-    @RequestMapping("delete/{id}")
-    public String deleteUser(@PathVariable("id") Long id){
+    @RequestMapping(value = "delete", method = RequestMethod.POST)
+    public String delete(@RequestParam("id") Long id, RedirectAttributes redirectAttributes){
         userService.deleteUser(id);
+        redirectAttributes.addFlashAttribute("message", "User successfully deleted!");
         return "redirect:/user/all";
     }
 
@@ -67,11 +68,13 @@ public class UserController {
     @RequestMapping(value = "edit", method = RequestMethod.POST)
     public String updateUser(@RequestParam("id") Long id,
                              @RequestParam("userName") String userName,
-                             @RequestParam("email") String email){
+                             @RequestParam("email") String email,
+                             RedirectAttributes redirectAttributes){
         User user = userService.getUserById(id);
         user.setUserName(userName);
         user.setEmail(email);
         userService.updateUser(user);
+        redirectAttributes.addFlashAttribute("message", "User successfully edited!");
         return "redirect:/user/all";
     }
 }
