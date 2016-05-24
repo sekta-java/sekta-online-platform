@@ -27,10 +27,10 @@ public class User {
     private String password;
 
     @OneToMany(mappedBy = "user")
-    private Set<Grade> gradeSet= new HashSet<>();
+    private Set<Grade> gradeSet= new HashSet<Grade>();
 
     @OneToMany(mappedBy = "user")
-    private Set<Message> messageSet= new HashSet<>();
+    private Set<Message> messageSet= new HashSet<Message>();
 
 
     public User() {}
