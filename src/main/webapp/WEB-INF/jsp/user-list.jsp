@@ -58,10 +58,8 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
-
     </div>
 </div>
 
@@ -77,7 +75,7 @@
     <tr>
             <td>${user.userName}</td>
             <td>${user.email}</td>
-        <td><i class="glyphicon glyphicon-pencil" style="color: #d9b144;"></i></td>
+        <td><a href="/user/edit/${user.id}"><i class="glyphicon glyphicon-pencil" style="color: #d9b144;"></i></a></td>
         <td><a href="/user/delete/${user.id}"><i class="glyphicon glyphicon-remove" style="color: #d90000;"></i></a></td>
     </tr>
     </c:forEach>

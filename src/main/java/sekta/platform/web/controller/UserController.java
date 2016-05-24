@@ -56,4 +56,22 @@ public class UserController {
         userService.deleteUser(id);
         return "redirect:/user/all";
     }
+
+    @RequestMapping(value = "edit/{id}", method = RequestMethod.GET)
+    public String editUser(@PathVariable("id") Long id, ModelMap model){
+        User user = userService.getUserById(id);
+        model.addAttribute(user);
+        return "user-edit";
+    }
+
+    @RequestMapping(value = "edit", method = RequestMethod.POST)
+    public String updateUser(@RequestParam("id") Long id,
+                             @RequestParam("userName") String userName,
+                             @RequestParam("email") String email){
+        User user = userService.getUserById(id);
+        user.setUserName(userName);
+        user.setEmail(email);
+        userService.updateUser(user);
+        return "redirect:/user/all";
+    }
 }
