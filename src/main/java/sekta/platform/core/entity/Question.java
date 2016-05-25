@@ -12,8 +12,8 @@ public class Question {
     private String text;
 
     @ManyToOne
-    @JoinColumn(name = "tests_id")
-    private TestTask testTask;
+    @JoinColumn(name = "quiz_id")
+    private Quiz quiz;
 
     @OneToMany(mappedBy =  "question")
     private List<Answer> answers;
@@ -34,12 +34,12 @@ public class Question {
         this.text = text;
     }
 
-    public TestTask getTestTask() {
-        return testTask;
+    public Quiz getQuiz() {
+        return quiz;
     }
 
-    public void setTestTask(TestTask testTask) {
-        this.testTask = testTask;
+    public void setQuiz(Quiz quiz) {
+        this.quiz = quiz;
     }
 
     public List<Answer> getAnswers() {

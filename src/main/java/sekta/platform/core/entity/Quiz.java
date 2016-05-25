@@ -4,30 +4,30 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class TestTask {
+public class Quiz {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private String name;
+    private Long id;
+    private String title;
 
-    @OneToMany(mappedBy =  "testTask")
+    @OneToMany(mappedBy =  "quiz")
     private List<Question> questions;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public List<Question> getQuestions() {
