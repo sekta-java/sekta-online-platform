@@ -15,7 +15,7 @@ import sekta.platform.core.service.UserService;
  * Created by natad on 18.05.2016.
  */
 @Controller
-@RequestMapping("user")
+@RequestMapping("users")
 public class UserController {
     @Autowired
     private UserService userService;
@@ -23,7 +23,7 @@ public class UserController {
     @RequestMapping("")
     public String showAll(ModelMap model){
         model.addAttribute("users", userService.getAllUsers());
-        return "user-list";
+        return "users/user-list";
     }
 
     @RequestMapping(value = "create", method = RequestMethod.POST)
@@ -37,7 +37,7 @@ public class UserController {
         user.setPassword(password);
         userService.createUser(user);
         redirectAttributes.addFlashAttribute("message", "User successfully created!");
-        return "redirect:/user/all";
+        return "redirect:/users";
     }
 
     @RequestMapping(value = "create", method = RequestMethod.GET)
@@ -45,17 +45,12 @@ public class UserController {
         return "new-user";
     }
 
-    @RequestMapping("all")
-    public String showAllUsers(ModelMap model){
-        model.addAttribute("users", userService.getAllUsers());
-        return "user-list";
-    }
 
     @RequestMapping(value = "delete", method = RequestMethod.POST)
     public String delete(@RequestParam("id") Long id, RedirectAttributes redirectAttributes){
         userService.deleteUser(id);
         redirectAttributes.addFlashAttribute("message", "User successfully deleted!");
-        return "redirect:/user/all";
+        return "redirect:/users";
     }
 
     @RequestMapping(value = "edit/{id}", method = RequestMethod.GET)
@@ -75,6 +70,6 @@ public class UserController {
         user.setEmail(email);
         userService.updateUser(user);
         redirectAttributes.addFlashAttribute("message", "User successfully edited!");
-        return "redirect:/user/all";
+        return "redirect:/users";
     }
 }
