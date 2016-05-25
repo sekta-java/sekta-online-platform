@@ -8,7 +8,14 @@ import javax.persistence.*;
  */
 
 @Entity
-public class Message extends EntityModel{
+@Table(uniqueConstraints = {
+        @UniqueConstraint(columnNames = "message_id")
+})
+public class Message {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long message_id;
 
     private String message;
 
@@ -23,6 +30,14 @@ public class Message extends EntityModel{
     private User user;
 
     public Message() {
+    }
+
+    public Long getMessage_id() {
+        return message_id;
+    }
+
+    public void setMessage_id(Long message_id) {
+        this.message_id = message_id;
     }
 
     public String getMessage() {

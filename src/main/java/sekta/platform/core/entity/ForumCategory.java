@@ -9,7 +9,15 @@ import java.util.Set;
  */
 
 @Entity
-public class ForumCategory extends EntityModel {
+@Table(uniqueConstraints = {
+        @UniqueConstraint(columnNames = "forum_category_id"),
+        @UniqueConstraint(columnNames = "title")
+})
+public class ForumCategory{
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long forum_category_id;
 
     private String title;
 
@@ -17,6 +25,14 @@ public class ForumCategory extends EntityModel {
     private Set<Message> messageSet= new HashSet<Message>();
 
     public ForumCategory() {
+    }
+
+    public Long getForum_category_id() {
+        return forum_category_id;
+    }
+
+    public void setForum_category_id(Long forum_category_id) {
+        this.forum_category_id = forum_category_id;
     }
 
     public String getTitle() {

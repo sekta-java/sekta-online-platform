@@ -7,10 +7,16 @@ import javax.persistence.*;
  */
 
 @Entity
-public class Grade extends EntityModel {
+@Table(uniqueConstraints = {
+        @UniqueConstraint(columnNames = "grade_id")
+})
+public class Grade  {
 
-    @Enumerated(EnumType.STRING)
-    private GradeEnum grade;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long grade_id;
+
+    private String grade;
 
     private String comment;
 
@@ -21,12 +27,20 @@ public class Grade extends EntityModel {
     public Grade() {
     }
 
-    public GradeEnum getGrade() {
+    public String getGrade() {
         return grade;
     }
 
-    public void setGrade(GradeEnum grade) {
+    public void setGrade(String grade) {
         this.grade = grade;
+    }
+
+    public Long getGrade_id() {
+        return grade_id;
+    }
+
+    public void setGrade_id(Long grade_id) {
+        this.grade_id = grade_id;
     }
 
     public String getComment() {

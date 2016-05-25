@@ -1,14 +1,15 @@
 package sekta.platform.core.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class Question extends EntityModel{
+public class Question {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long question_id;
 
     private String text;
 
@@ -17,8 +18,18 @@ public class Question extends EntityModel{
 
     @ManyToOne
     @JoinColumn(name = "tests_id")
-    private TestTask testTask;
+    private Quiz quiz;
 
+    public Question() {
+    }
+
+    public Long getQuestion_id() {
+        return question_id;
+    }
+
+    public void setQuestion_id(Long question_id) {
+        this.question_id = question_id;
+    }
 
     public String getText() {
         return text;
@@ -28,12 +39,12 @@ public class Question extends EntityModel{
         this.text = text;
     }
 
-    public TestTask getTestTask() {
-        return testTask;
+    public Quiz getQuiz() {
+        return quiz;
     }
 
-    public void setTestTask(TestTask testTask) {
-        this.testTask = testTask;
+    public void setQuiz(Quiz quiz) {
+        this.quiz = quiz;
     }
 
 

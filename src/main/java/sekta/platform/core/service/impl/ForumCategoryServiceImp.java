@@ -48,7 +48,7 @@ public class ForumCategoryServiceImp implements ForumCategoryService {
     @Transactional
     public void deleteForumCategory(Long id) {
         ForumCategory forumCategory= new ForumCategory();
-        forumCategory.setId(id);
+        forumCategory.setForum_category_id(id);
         forumCategoryDao.delete(forumCategory);
     }
 }

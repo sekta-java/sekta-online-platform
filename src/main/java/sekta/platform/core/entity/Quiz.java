@@ -4,11 +4,26 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class TestTask extends EntityModel{
+public class Quiz {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long quiz_id;
 
     private String name;
 
-    @OneToMany(mappedBy =  "testTask")
+    public Quiz() {
+    }
+
+    public Long getQuiz_id() {
+        return quiz_id;
+    }
+
+    public void setQuiz_id(Long quiz_id) {
+        this.quiz_id = quiz_id;
+    }
+
+    @OneToMany(mappedBy =  "quiz")
     private List<Question> questions;
 
     public String getName() {

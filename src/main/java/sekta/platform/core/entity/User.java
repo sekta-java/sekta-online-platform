@@ -9,11 +9,23 @@ import java.util.Set;
  */
 
 @Entity
-public class User extends EntityModel{
+@Table(uniqueConstraints = {
+        @UniqueConstraint(columnNames = "user_id"),
+        @UniqueConstraint(columnNames = "email"),
+        @UniqueConstraint(columnNames = "firstName"),
+        @UniqueConstraint(columnNames = "password")
+})
+public class User{
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long user_id;
+    
     private String email;
 
-    private String userName;
+    private String firstName;
+
+    private String lastName;
 
     private String password;
 
@@ -25,6 +37,14 @@ public class User extends EntityModel{
 
     public User() {}
 
+    public Long getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(Long user_id) {
+        this.user_id = user_id;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -33,12 +53,20 @@ public class User extends EntityModel{
         this.email = email;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getPassword() {

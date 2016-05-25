@@ -47,7 +47,7 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public void deleteQuestion(Long id) {
         Question question= new Question();
-        question.setId(id);
+        question.setQuestion_id(id);
         questionDao.delete(question);
     }
 }
