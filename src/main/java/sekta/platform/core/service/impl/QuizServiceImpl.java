@@ -21,7 +21,11 @@ public class QuizServiceImpl implements QuizService {
     @Override
     @Transactional
     public List<Quiz> getAllQuizzes() {
-        return quizDao.findAll();
+        List<Quiz> quizzes = quizDao.findAll();
+        for (Quiz quiz : quizzes) {
+            quiz.getQuestions().size();
+        }
+        return quizzes;
     }
 
     @Override

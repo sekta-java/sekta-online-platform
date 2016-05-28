@@ -4,14 +4,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import sekta.platform.core.entity.Quiz;
 import sekta.platform.core.service.QuizService;
+
+import java.util.List;
 
 
 /**
  * Created by natad on 25.05.2016.
  */
 @Controller
-@RequestMapping("quiz")
+@RequestMapping("quizzes")
 public class QuizController {
 
     @Autowired
@@ -19,8 +22,9 @@ public class QuizController {
 
     @RequestMapping("")
     public String getAll(ModelMap model){
-        model.addAttribute("quizzes", quizService.getAllQuizzes());
-        return "quiz-list";
+        List<Quiz> quizzes = quizService.getAllQuizzes();
+        model.addAttribute("quizzes", quizzes);
+        return "quizzes/quiz-list";
     }
 
     @RequestMapping("create")

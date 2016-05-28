@@ -57,7 +57,7 @@ public class UserController {
     public String editUser(@PathVariable("id") Long id, ModelMap model){
         User user = userService.getUserById(id);
         model.addAttribute(user);
-        return "user-edit";
+        return "users/user-edit";
     }
 
     @RequestMapping(value = "edit", method = RequestMethod.POST)

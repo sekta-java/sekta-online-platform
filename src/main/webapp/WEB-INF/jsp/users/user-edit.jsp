@@ -21,7 +21,7 @@
 </head>
 <body class="container">
 
-<form action="/user/edit" method="post" class="col-xs-offset-4 col-xs-4">
+<form action="/users/edit" method="post" class="col-xs-offset-4 col-xs-4">
     <div class="form-group">
         <label for="user-name">Username</label>
         <input type="text" class="form-control" name="userName" value="${user.userName}" id="user-name">
