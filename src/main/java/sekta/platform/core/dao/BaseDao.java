@@ -15,4 +15,6 @@ public interface BaseDao<T> {
 
     List<T> findAll();
 
+    List<T> findAllByProperty(String propertyName, Object propertyValue);
+
 }

@@ -1,5 +1,6 @@
 package sekta.platform.persistence;
 
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -35,5 +36,13 @@ public abstract class BaseDaoImpl<T> implements BaseDao<T> {
 
     public List<T> findAll() {
         return sessionFactory.getCurrentSession().createCriteria(entityClass).list();
+    }
+
+    @Override
+    public List<T> findAllByProperty(String propertyName, Object propertyValue) {
+        String queryString = "from "+ entityClass.getName() +" where " + propertyName + "= ?";
+        Query queryObject = sessionFactory.getCurrentSession().createQuery(queryString);
+        queryObject.setParameter(0, propertyValue);
+        return queryObject.list();
     }
 }
