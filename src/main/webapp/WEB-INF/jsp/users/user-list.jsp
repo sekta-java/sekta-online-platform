@@ -19,14 +19,15 @@
             integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous">
     </script>
     <link rel="stylesheet" href="/static/user-list.css">
+    <link rel="stylesheet" href="/static/general.css">
 </head>
 <body class="container">
 
 <!-- Trigger the modal with a button -->
-<div class="new-user">
+<div class="create-button">
 <button type="button" class="btn btn-primary col-xs-2" data-toggle="modal" data-target="#myModal">New user</button>
 </div>
-<p class="text-center text-success col-offset-xs-12 bg-success message">${message}</p>
+<p class="text-center text-success col-offset-xs-12 bg-success flash-message">${message}</p>
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -60,7 +61,7 @@
     </div>
 </div>
 
-<table class="table table-striped text-center users">
+<table class="table table-striped text-center all-items">
     <tr>
         <th class="col-xs-2 text-center">Username:</th>
         <th class="col-xs-3 text-center">E-mail address:</th>
