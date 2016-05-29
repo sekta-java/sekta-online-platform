@@ -1,6 +1,6 @@
-<!doctype html>
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<!doctype html>
 
 <html>
 <head>
@@ -8,18 +8,7 @@
     <title>Main page</title>
 </head>
 <body>
-
-<h2>
-    Hello,
-    <c:if test="${name ne null}">
-        ${name}
-    </c:if>
-</h2>
-
-<form action="" method="GET">
-    <input type="text" name="name" value="${name}">
-    <input type="submit" value="Send">
-</form>
-<a href="user"><button>Manage users</button></a>
+<a href="users">Manage users</a><br>
+<a href="quizzes">Manage quizzes</a>
 </body>
 </html>
