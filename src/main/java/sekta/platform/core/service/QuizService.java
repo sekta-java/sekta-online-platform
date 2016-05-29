@@ -13,4 +13,6 @@ public interface QuizService {
     Quiz createQuiz(Quiz quiz);
     Quiz updateQuiz(Quiz quiz);
     void deleteQuiz(Long id);
+    List<Quiz> findByCreatorId(Long creatorId);
+    List<Quiz> findByTitle(String quizTitle);
 }

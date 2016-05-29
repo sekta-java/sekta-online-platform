@@ -55,4 +55,22 @@ public class QuizServiceImpl implements QuizService {
         quiz.setId(id);
         quizDao.delete(quiz);
     }
+
+    @Transactional
+    public List<Quiz> findByCreatorId(Long creatorId) {
+        List<Quiz> quizzes = quizDao.findAllByProperty("creator.id", creatorId);
+        for (Quiz quiz : quizzes) {
+            quiz.getQuestions().size();
+        }
+        return quizzes;
+    }
+
+    @Transactional
+    public List<Quiz> findByTitle(String quizTitle){
+        List<Quiz> quizzes = quizDao.findAllByProperty("title", quizTitle);
+        for (Quiz quiz : quizzes) {
+            quiz.getQuestions().size();
+        }
+        return quizzes;
+    }
 }
