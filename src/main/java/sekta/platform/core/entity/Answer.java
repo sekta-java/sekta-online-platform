@@ -6,7 +6,7 @@ import javax.persistence.*;
 public class Answer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //autoincrement
-    private Integer id;
+    private Long id;
 
     private String text;
 
@@ -16,11 +16,11 @@ public class Answer {
     @JoinColumn(name = "question_id")
     private Question question;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
