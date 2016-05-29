@@ -36,7 +36,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h1>User's creation</h1>
+                <h1>User creation</h1>
             </div>
             <div class="modal-body">
                 <form action="/users/create" method="post" class="">

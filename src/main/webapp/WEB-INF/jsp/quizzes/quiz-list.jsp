@@ -27,6 +27,38 @@
 </div>
 <p class="text-center text-success col-offset-xs-12 bg-success flash-message">${message}</p>
 
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h1>Quiz creation</h1>
+            </div>
+            <div class="modal-body">
+                <form action="/quizzes/create" method="post">
+                    <div class="form-group">
+                        <label for="user-name">Your username:</label>
+                        <input type="text" class="form-control" name="userName" id="user-name" placeholder="Peter" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="title">Quiz title:</label>
+                        <input type="text" class="form-control" name="title" id="title" placeholder="Quiz theme..." required>
+                    </div>
+                    <div class="form-group">
+                        <a href="/questions/create"><button class="btn btn-primary">Add question</button></a>
+                    </div>
+                    <button type="submit" class="btn btn-primary col-xs-12">Add</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
 <table class="table table-striped text-center all-items">
     <tr>
         <th class="col-xs-2 text-center">Quiz title</th>

@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 public class QuestionServiceImpl implements QuestionService {
     @Autowired
-    QuestionDao questionDao;
+    private QuestionDao questionDao;
 
     @Override
     public List<Question> getAllQuestions() {
