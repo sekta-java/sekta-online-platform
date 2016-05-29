@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT -jar  target/sekta-online-platform-1.0-SNAPSHOT.jar
+web: java -Dserver.port=$PORT -Dspring.datasource.url="jdbc:mysql://sql8.freemysqlhosting.net:3306/sql8120818" -Dspring.datasource.username=sql8120818 -Dspring.datasource.password=VbY2FVMNEf -jar  target/sekta-online-platform-1.0-SNAPSHOT.jar
