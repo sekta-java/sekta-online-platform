@@ -40,8 +40,13 @@
             <div class="modal-body">
                 <form action="/quizzes/create" method="post">
                     <div class="form-group">
-                        <label for="user-name">Your username:</label>
-                        <input type="text" class="form-control" name="userName" id="user-name" placeholder="Peter" required>
+                        <label for="user-name">Username</label>
+                        <select class="form-control" name="userId" id="user-name" required>
+                            <option selected disabled>Select user</option>
+                            <c:forEach var="user" items="${users}">
+                                <option value="${user.id}">${user.userName}</option>
+                            </c:forEach>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="title">Quiz title:</label>

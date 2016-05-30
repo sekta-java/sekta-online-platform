@@ -18,6 +18,9 @@ public class Quiz {
     @JoinColumn(name = "creator_id")
     private User creator;
 
+    public Quiz() {
+    }
+
     public Long getId() {
         return id;
     }

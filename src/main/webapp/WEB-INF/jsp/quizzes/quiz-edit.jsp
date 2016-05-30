@@ -1,14 +1,15 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: natad
-  Date: 24.05.2016
-  Time: 12:34
+  Date: 30.05.2016
+  Time: 14:24
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Edit</title>
+    <title>Title</title>
     <script src="https://code.jquery.com/jquery-2.2.4.js"
             integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous">
     </script>
@@ -22,19 +23,25 @@
 </head>
 <body class="container">
 
-<form action="/users/edit" method="post" class="col-xs-offset-4 col-xs-4 edit-page">
+<form action="/quizzes/edit" method="post" class="col-xs-offset-4 col-xs-4 edit-page">
     <div class="form-group">
-        <label for="user-name">Username</label>
-        <input type="text" class="form-control" name="userName" value="${user.userName}" id="user-name">
+        <label for="creator-name">Creator name</label>
+        <select class="form-control" name="userId" id="creator-name" required>
+            <option selected disabled>${quiz.creator.userName}</option>
+            <c:forEach var="user" items="${users}">
+                <option value="${user.id}">${user.userName}</option>
+            </c:forEach>
+        </select>
     </div>
     <div class="form-group">
-        <label for="email">E-mail</label>
-        <input type="email" class="form-control" name="email" value="${user.email}" id="email">
+        <label for="quiz-title">Quiz title</label>
+        <input type="text" class="form-control" name="title" value="${quiz.title}" id="quiz-title">
     </div>
     <div class="form-group">
-        <input type="hidden" class="form-control" name="id" value="${user.id}">
+        <a href="/questions/create"><button class="btn btn-primary">Add question</button></a>
     </div>
     <button type="submit" class="btn btn-primary col-xs-12">Edit</button>
 </form>
+
 </body>
 </html>

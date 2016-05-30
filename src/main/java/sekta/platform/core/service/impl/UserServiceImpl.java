@@ -20,7 +20,12 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public List<User> getAllUsers() {
-        return userDao.findAll();
+        List<User> users = userDao.findAll();
+        for (User user : users){
+            user.getGradeSet().size();
+            user.getMessageSet().size();
+        }
+        return users;
     }
 
     @Override

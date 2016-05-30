@@ -1,6 +1,7 @@
 package sekta.platform.core.service;
 
 import sekta.platform.core.entity.Quiz;
+import sekta.platform.core.entity.User;
 
 import java.util.List;
 

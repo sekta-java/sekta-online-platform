@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import sekta.platform.core.dao.QuizDao;
+import sekta.platform.core.dao.UserDao;
 import sekta.platform.core.entity.Quiz;
+import sekta.platform.core.entity.User;
 import sekta.platform.core.service.QuizService;
 
 import java.util.List;
@@ -17,6 +19,8 @@ public class QuizServiceImpl implements QuizService {
 
     @Autowired
     private QuizDao quizDao;
+    @Autowired
+    private UserDao userDao;
 
     @Override
     @Transactional
@@ -31,7 +35,9 @@ public class QuizServiceImpl implements QuizService {
     @Override
     @Transactional
     public Quiz getQuizById(Long id) {
-        return quizDao.getById(id);
+        Quiz quiz = quizDao.getById(id);
+        quiz.getQuestions().size();
+        return quiz;
     }
 
     @Override
