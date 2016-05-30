@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import sekta.platform.core.entity.Quiz;
+import sekta.platform.core.entity.User;
 import sekta.platform.core.service.QuizService;
 import sekta.platform.core.service.UserService;
 
@@ -42,12 +43,33 @@ public class QuizController {
         quiz.setTitle(title);
         quizService.createQuiz(quiz);
         model.addAttribute("quizzes", quizService.getAllQuizzes());
-        return "quizzes/quiz-list";
+        return "redirect:/quizzes";
     }
      @RequestMapping("edit/{quizId}")
     public String editQuiz(@PathVariable("quizId") Long quizId, ModelMap model){
-         model.addAttribute("quiz", quizService.getQuizById(quizId));
-         model.addAttribute("users", userService.getAllUsers());
+         Quiz quiz = quizService.getQuizById(quizId);
+         model.addAttribute("quiz", quiz);
+         List<User> users = userService.getAllUsers();
+         model.addAttribute("users", users);
          return "quizzes/quiz-edit";
      }
+
+    @RequestMapping(value = "edit", method = RequestMethod.POST)
+    public String saveEditions(@RequestParam("quizId") Long quizId,
+                               @RequestParam("userId") Long creatorId,
+                               @RequestParam("title") String title,
+                               ModelMap model){
+        Quiz quiz = quizService.getQuizById(quizId);
+        quiz.setCreator(userService.getUserById(creatorId));
+        quiz.setTitle(title);
+        quizService.updateQuiz(quiz);
+        model.addAttribute("quizzes", quizService.getAllQuizzes());
+        return "redirect:/quizzes";
+    }
+
+    @RequestMapping(value = "delete", method = RequestMethod.POST)
+    public String delete(@RequestParam("quizId")Long quizId){
+        quizService.deleteQuiz(quizId);
+        return "redirect:/quizzes";
+    }
 }

@@ -37,6 +37,8 @@ public class QuizServiceImpl implements QuizService {
     public Quiz getQuizById(Long id) {
         Quiz quiz = quizDao.getById(id);
         quiz.getQuestions().size();
+        quiz.getCreator().getGradeSet().size();
+        quiz.getCreator().getMessageSet().size();
         return quiz;
     }
 

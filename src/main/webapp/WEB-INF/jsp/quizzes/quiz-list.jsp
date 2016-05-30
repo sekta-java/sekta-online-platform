@@ -80,7 +80,7 @@
         <td><a href="/quizzes/edit/${quiz.id}"><i class="glyphicon glyphicon-pencil" style="color: #d9b144;"></i></a></td>
         <td>
             <form action="/quizzes/delete" method="post">
-                <input type="hidden" name="id" value="${quiz.id}">
+                <input type="hidden" name="quizId" value="${quiz.id}">
                 <button type="submit" style="height: 0; border: 0; padding: 0;"><i class="glyphicon glyphicon-remove" style="color: #d90000;"></i></button>
             </form>
         </td>
