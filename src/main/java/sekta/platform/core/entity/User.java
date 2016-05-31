@@ -10,10 +10,8 @@ import java.util.Set;
 
 @Entity
 @Table(uniqueConstraints = {
-        @UniqueConstraint(columnNames = "user_id"),
         @UniqueConstraint(columnNames = "email"),
-        @UniqueConstraint(columnNames = "firstName"),
-        @UniqueConstraint(columnNames = "password")
+        @UniqueConstraint(columnNames = "firstName")
 })
 public class User{
 
