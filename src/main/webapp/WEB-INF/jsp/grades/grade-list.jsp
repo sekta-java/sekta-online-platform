@@ -39,60 +39,27 @@
                 <h1>Add grade</h1>
             </div>
             <div class="modal-body">
-                <form action="/grade/create" method="post" class="">
+                <form action="/grades/create" method="post" class="">
                     <div class="form-group">
                         <label for="user-name">Username</label>
-                        <%--<input type="text" class="form-control" name="userName" id="user-name" placeholder="Peter">--%>
                         <select class="form-control" name="userId" id="user-name" required>
                             <option selected disabled>Select user</option>
                             <c:forEach var="user" items="${users}">
                             <option value="${user.id}">${user.userName}</option>
                             </c:forEach>
                         </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="grade">Grade</label>
+                        <input type="grade" class="form-control" name="grade" value="${grade.grade}" id="grade">
+                    </div>
 
-                        <%--TODO: Select!!!--%>
+                    <div class="form-group">
+                        <label for="comment">Comment</label>
+                        <input type="comment" class="form-control" name="comment" value="${grade.comment}" id="comment">
                     </div>
                     <div class="form-group">
-                        <label for="email">E-mail</label>
-                        <input type="email" class="form-control" name="email" id="email" placeholder="peter.ivanov@gmail.com">
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="text" class="form-control" name="password" id="password" placeholder="Ivanov">
-                    </div>
-                    <button type="submit" class="btn btn-primary col-xs-12">Add</button>
-                </form>
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
-    </div>
-</div>
-
-<%--editModal--%>
-<div id="editModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h1>Edit grade</h1>
-            </div>
-            <div class="modal-body">
-                <form action="/users/create" method="post" class="">
-                    <div class="form-group">
-                        <label for="user-name">Username</label>
-                        <input type="text" class="form-control" name="userName" id="user-name" placeholder="Peter">
-                        <%--TODO: Select!!!--%>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">E-mail</label>
-                        <input type="email" class="form-control" name="email" id="email" placeholder="peter.ivanov@gmail.com">
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="text" class="form-control" name="password" id="password" placeholder="Ivanov">
+                        <input type="hidden" class="form-control" name="id" value="${user.id}">
                     </div>
                     <button type="submit" class="btn btn-primary col-xs-12">Add</button>
                 </form>
@@ -117,16 +84,15 @@
         <td>${grade.user.userName}</td>
         <td>${grade.grade}</td>
         <td>${grade.comment}</td>
-        <td><a href="" data-toggle="modal" data-target="#editModal"><i class="glyphicon glyphicon-pencil" data-toggle="modal" style="color: #d9b144;"></i></a></td>
+        <td><a href="/grades/edit/${grade.id}"><i class="glyphicon glyphicon-pencil" style="color: #d9b144;"></i></a></td>
         <td>
-            <form action="/users/delete" method="post">
-                <input type="hidden" name="id" value="${user.id}">
+            <form action="/grsdes/delete" method="post">
+                <input type="hidden" name="id" value="${grade.id}">
             <button type="submit" style="height: 0; border: 0; padding: 0;"><i class="glyphicon glyphicon-remove" style="color: #d90000;"></i></button>
             </form>
         </td>
     </tr>
     </c:forEach>
 </table>
-
 </body>
 </html>

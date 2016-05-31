@@ -28,16 +28,16 @@ public class GradeServiceImpl implements GradeService {
 
     @Override
     @Transactional
-    public Grade createGrade(Grade user) {
-        gradeDao.create(user);
-        return user;
+    public Grade createGrade(Grade grade) {
+        gradeDao.create(grade);
+        return grade;
     }
 
     @Override
     @Transactional
-    public Grade updateGrade(Grade user) {
-        gradeDao.update(user);
-        return user;
+    public Grade updateGrade(Grade grade) {
+        gradeDao.update(grade);
+        return grade;
     }
 
     @Override

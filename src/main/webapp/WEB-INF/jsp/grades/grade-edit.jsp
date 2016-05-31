@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: natad
-  Date: 24.05.2016
-  Time: 12:34
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -17,21 +10,30 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
             integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous">
     </script>
-    <link rel="stylesheet" href="/static/user-list.css">
+    <link rel="stylesheet" href="/static/grade-list.css">
+    <h1 align="center">Edit grade</h1>
 </head>
 <body class="container">
 
-<form action="/users/edit" method="post" class="col-xs-offset-4 col-xs-4">
+<form action="/grades/edit" method="post" class="col-xs-offset-4 col-xs-4">
     <div class="form-group">
         <label for="user-name">Username</label>
-        <input type="text" class="form-control" name="userName" value="${user.userName}" id="user-name">
+        <input type="text" class="form-control" name="userName" value="${grade.user.userName}" id="user-name">
     </div>
-    <label for="email">E-mail</label>
-    <input type="email" class="form-control" name="email" value="${user.email}" id="email">
+
+    <div class="form-group">
+        <label for="grade">Grade</label>
+        <input type="grade" class="form-control" name="grade" value="${grade.grade}" id="grade">
+    </div>
+
+    <div class="form-group">
+        <label for="comment">Comment</label>
+        <input type="comment" class="form-control" name="comment" value="${grade.comment}" id="comment">
     </div>
     <div class="form-group">
         <input type="hidden" class="form-control" name="id" value="${user.id}">
     </div>
+
     <button type="submit" class="btn btn-primary col-xs-12">Edit</button>
 </form>
 </body>
