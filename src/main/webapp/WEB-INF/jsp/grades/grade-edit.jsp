@@ -17,21 +17,20 @@
 
 <form action="/grades/edit" method="post" class="col-xs-offset-4 col-xs-4">
     <div class="form-group">
-        <label for="user-name">Username</label>
-        <input type="text" class="form-control" name="userName" value="${grade.user.userName}" id="user-name">
+        <label>User: ${grade.user.userName}</label>
     </div>
 
     <div class="form-group">
         <label for="grade">Grade</label>
-        <input type="grade" class="form-control" name="grade" value="${grade.grade}" id="grade">
+        <input type="number" class="form-control" name="grade" value="${grade.grade}" id="grade"  min="0" max="100" required>
     </div>
 
     <div class="form-group">
         <label for="comment">Comment</label>
-        <input type="comment" class="form-control" name="comment" value="${grade.comment}" id="comment">
+        <input type="text" class="form-control" name="comment" value="${grade.comment}" id="comment">
     </div>
     <div class="form-group">
-        <input type="hidden" class="form-control" name="id" value="${user.id}">
+        <input type="hidden" class="form-control" name="id" value="${grade.id}">
     </div>
 
     <button type="submit" class="btn btn-primary col-xs-12">Edit</button>

@@ -43,7 +43,7 @@
                     <div class="form-group">
                         <label for="user-name">Username</label>
                         <select class="form-control" name="userId" id="user-name" required>
-                            <option selected disabled>Select user</option>
+                            <option selected disabled></option>
                             <c:forEach var="user" items="${users}">
                             <option value="${user.id}">${user.userName}</option>
                             </c:forEach>
@@ -51,12 +51,12 @@
                     </div>
                     <div class="form-group">
                         <label for="grade">Grade</label>
-                        <input type="grade" class="form-control" name="grade" value="${grade.grade}" id="grade">
+                        <input type="number" class="form-control" name="grade" value="${grade.grade}" id="grade" min="0" max="100" required>
                     </div>
 
                     <div class="form-group">
                         <label for="comment">Comment</label>
-                        <input type="comment" class="form-control" name="comment" value="${grade.comment}" id="comment">
+                        <input type="text" class="form-control" name="comment" value="${grade.comment}" id="comment" >
                     </div>
                     <div class="form-group">
                         <input type="hidden" class="form-control" name="id" value="${user.id}">
@@ -75,6 +75,7 @@
         <th class="col-xs-2 text-center">Username:</th>
         <th class="col-xs-1 text-center">Grade:</th>
         <th class="col-xs-4 text-center">Comments:</th>
+        <th class="col-xs-2 text-center">Date:</th>
         <th class="col-xs-1 text-center">Edit</th>
         <th class="col-xs-1 text-center">Delete</th>
     </tr>
@@ -84,9 +85,10 @@
         <td>${grade.user.userName}</td>
         <td>${grade.grade}</td>
         <td>${grade.comment}</td>
+        <td>${grade.date}</td>
         <td><a href="/grades/edit/${grade.id}"><i class="glyphicon glyphicon-pencil" style="color: #d9b144;"></i></a></td>
         <td>
-            <form action="/grsdes/delete" method="post">
+            <form action="/grades/delete" method="post">
                 <input type="hidden" name="id" value="${grade.id}">
             <button type="submit" style="height: 0; border: 0; padding: 0;"><i class="glyphicon glyphicon-remove" style="color: #d90000;"></i></button>
             </form>
