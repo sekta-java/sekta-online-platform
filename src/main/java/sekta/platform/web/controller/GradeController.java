@@ -14,6 +14,9 @@ import sekta.platform.core.entity.User;
 import sekta.platform.core.service.GradeService;
 import sekta.platform.core.service.UserService;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 
 @Controller
 @RequestMapping("grades")
@@ -45,6 +48,7 @@ public class GradeController {
 
         grade.setGrade(gradeValue);
         grade.setComment(comment);
+        grade.setDate(LocalDate.now());
         gradeService.createGrade(grade);
         redirectAttributes.addFlashAttribute("message", "Grade successfully added!");
         return "redirect:/grades";
@@ -67,15 +71,10 @@ public class GradeController {
 
     @RequestMapping(value = "edit", method = RequestMethod.POST)
     public String updateGrade(@RequestParam("id") Long id,
-                              @RequestParam("userId") Long userId,
                               @RequestParam("grade") Integer gradeValue,
                               @RequestParam("comment") String comment,
                               RedirectAttributes redirectAttributes){
         Grade grade = gradeService.getGradeById(id);
-
-        User user = new User();
-        user.setId(userId);
-        grade.setUser(user);
 
         grade.setGrade(gradeValue);
         grade.setComment(comment);
