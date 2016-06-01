@@ -52,9 +52,6 @@
                         <label for="title">Quiz title:</label>
                         <input type="text" class="form-control" name="title" id="title" placeholder="Quiz theme..." required>
                     </div>
-                    <div class="form-group">
-                        <a href="/questions/create"><button class="btn btn-primary">Add question</button></a>
-                    </div>
                     <button type="submit" class="btn btn-primary col-xs-12">Add</button>
                 </form>
             </div>

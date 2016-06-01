@@ -2,6 +2,7 @@ package sekta.platform.core.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import sekta.platform.core.dao.QuestionDao;
 import sekta.platform.core.entity.Question;
 import sekta.platform.core.service.QuestionService;
@@ -27,18 +28,21 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
+    @Transactional
     public Question createQuestion(Question question) {
         questionDao.create(question);
         return question;
     }
 
     @Override
+    @Transactional
     public Question updateQuestion(Question question) {
         questionDao.update(question);
         return question;
     }
 
     @Override
+    @Transactional
     public void deleteQuestion(Long questionId) {
         Question question = new Question();
         question.setId(questionId);
