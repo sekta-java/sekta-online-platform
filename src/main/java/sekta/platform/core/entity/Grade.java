@@ -1,10 +1,8 @@
 package sekta.platform.core.entity;
 
 import javax.persistence.*;
-
-/**
- * Created by Retro on 14.05.2016.
- */
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "grade_table")
@@ -21,12 +19,22 @@ public class Grade {
     @Column(name = "comment")
     private String comment;
 
+    @Column(name = "date")
+    private LocalDate date;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-
     public Grade() {
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public long getId() {

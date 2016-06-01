@@ -30,6 +30,8 @@ public class DatabaseConfig {
 
     @Value("${hibernate.dialect}")
     private String dialect;
+    @Value("${hibernate.show_sql}")
+    private String showSql;
     @Value("${hibernate.hbm2ddl.auto}")
     private String hbm2ddlAuto;
     @Value("${entitymanager.packagesToScan}")
@@ -55,7 +57,7 @@ public class DatabaseConfig {
 
         Properties hibernateProperties = new Properties();
         hibernateProperties.put("hibernate.dialect", dialect);
-        hibernateProperties.put("hibernate.show_sql", true);
+        hibernateProperties.put("hibernate.show_sql", showSql);
         hibernateProperties.put("hibernate.hbm2ddl.auto", hbm2ddlAuto);
 
         localSessionFactoryBean.setHibernateProperties(hibernateProperties);
