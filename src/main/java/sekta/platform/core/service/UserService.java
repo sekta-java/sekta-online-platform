@@ -1,6 +1,7 @@
 package sekta.platform.core.service;
 
 import sekta.platform.core.entity.User;
+import sekta.platform.web.dto.UserRatingDto;
 
 import java.util.List;
 
@@ -9,6 +10,7 @@ import java.util.List;
  */
 public interface UserService {
     List<User> getAllUsers();
+    List<UserRatingDto> getAllUsersWithRating();
     User getUserById(Long id);
     User createUser(User user);
     User updateUser(User user);

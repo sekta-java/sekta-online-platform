@@ -1,7 +1,19 @@
 package sekta.platform.web.dto;
 
-/**
- * Created by mr. Sergey on 29.05.2016.
- */
-public class UserRatingDto {
+import sekta.platform.core.entity.User;
+
+import javax.persistence.Entity;
+
+@Entity
+public class UserRatingDto extends User {
+
+    private Integer rating;
+
+    public Integer getRating() {
+        return rating;
+    }
+
+    public void setRating(Integer rating) {
+        this.rating = rating;
+    }
 }
