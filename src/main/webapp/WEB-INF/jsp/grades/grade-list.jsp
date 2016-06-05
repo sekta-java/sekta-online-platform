@@ -70,7 +70,7 @@
     </div>
 </div>
 
-<table class="table table-striped text-center all-items">
+<table class="table table-striped text-center list-items">
     <tr>
         <th class="col-xs-2 text-center">Username:</th>
         <th class="col-xs-1 text-center">Grade:</th>

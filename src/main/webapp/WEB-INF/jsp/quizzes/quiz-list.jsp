@@ -50,7 +50,8 @@
                     </div>
                     <div class="form-group">
                         <label for="title">Quiz title:</label>
-                        <input type="text" class="form-control" name="title" id="title" placeholder="Quiz theme..." required>
+                        <input type="text" class="form-control" name="title" id="title" placeholder="Quiz theme..."
+                               required>
                     </div>
                     <button type="submit" class="btn btn-primary col-xs-12">Add</button>
                 </form>
@@ -61,7 +62,7 @@
     </div>
 </div>
 
-<table class="table table-striped text-center all-items">
+<table class="table text-center list-items table-hover table-striped">
     <tr>
         <th class="col-xs-2 text-center">Quiz title</th>
         <th class="col-xs-3 text-center">Creator</th>
@@ -69,20 +70,25 @@
         <th class="col-xs-1 text-center">Edit</th>
         <th class="col-xs-1 text-center">Delete</th>
     </tr>
-<c:forEach items="${quizzes}" var="quiz">
-    <tr>
-        <td>${quiz.title}</td>
-        <td>${quiz.creator.userName}</td>
-        <td>${quiz.questions.size()}</td>
-        <td><a href="/quizzes/edit/${quiz.id}"><i class="glyphicon glyphicon-pencil" style="color: #d9b144;"></i></a></td>
-        <td>
-            <form action="/quizzes/delete" method="post">
-                <input type="hidden" name="quizId" value="${quiz.id}">
-                <button type="submit" style="height: 0; border: 0; padding: 0;"><i class="glyphicon glyphicon-remove" style="color: #d90000;"></i></button>
-            </form>
-        </td>
-    </tr>
-</c:forEach>
+    <c:forEach items="${quizzes}" var="quiz">
+
+        <tr onclick="location.href='quizzes/${quiz.id}/questions';" class="reference">
+            <td>${quiz.title}</td>
+            <td>${quiz.creator.userName}</td>
+            <td>${quiz.questions.size()}</td>
+            <td><a href="/quizzes/edit/${quiz.id}"><i class="glyphicon glyphicon-pencil"
+                                                      style="color: #d9b144;"></i></a></td>
+            <td>
+                <form action="/quizzes/delete" method="post">
+                    <input type="hidden" name="quizId" value="${quiz.id}">
+                    <button type="submit" style="height: 0; border: 0; padding: 0;"><i
+                            class="glyphicon glyphicon-remove" style="color: #d90000;"></i></button>
+                </form>
+            </td>
+
+        </tr>
+
+    </c:forEach>
 </table>
 </body>
 </html>

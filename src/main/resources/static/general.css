@@ -5,7 +5,7 @@
     display: block;
     height: 35px;
 }
-.all-items{
+.list-items {
     margin-top: 20px;
 }
 .flash-message{
@@ -15,4 +15,7 @@
 }
 .edit-page{
     margin-top: 50px;
+}
+.reference{
+    cursor: pointer;
 }

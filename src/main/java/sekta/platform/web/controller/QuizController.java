@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import sekta.platform.core.entity.Quiz;
 import sekta.platform.core.entity.User;
 import sekta.platform.core.service.QuizService;
@@ -37,13 +38,16 @@ public class QuizController {
     }
 
     @RequestMapping(value = "create", method = RequestMethod.POST)
-    public String create(@RequestParam("userId") Long creatorId, @RequestParam("title") String title, ModelMap model){
+    public String create(@RequestParam("userId") Long creatorId,
+                         @RequestParam("title") String title,
+                         ModelMap model,
+                         RedirectAttributes redirectAttributes){
         Quiz quiz = new Quiz();
         quiz.setCreator(userService.getUserById(creatorId));
         quiz.setTitle(title);
         quizService.createQuiz(quiz);
-        model.addAttribute("quizzes", quizService.getAllQuizzes());
-        return "redirect:/quizzes";
+        redirectAttributes.addAttribute("quizId", quiz.getId());
+        return "redirect:/questions/create/{quizId}";
     }
      @RequestMapping("edit/{quizId}")
     public String editQuiz(@PathVariable("quizId") Long quizId, ModelMap model){

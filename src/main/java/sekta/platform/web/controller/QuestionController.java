@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import sekta.platform.core.entity.Answer;
 import sekta.platform.core.entity.Question;
 import sekta.platform.core.entity.Quiz;
@@ -20,7 +21,7 @@ import java.util.List;
  * Created by natad on 30.05.2016.
  */
 @Controller
-@RequestMapping("questions")
+@RequestMapping("quizzes/{quizId}/questions")
 public class QuestionController {
 
     @Autowired
@@ -29,25 +30,17 @@ public class QuestionController {
     @Autowired
     private QuizService quizService;
 
-    @RequestMapping("{quizId}")
-    public String showQuestionsByQuiz(@PathVariable("quizId") Long quizId, ModelMap model) {
+    @RequestMapping("")
+    public String showQuestionsByQuiz(@PathVariable("quizId") Long quizId,
+                                      ModelMap model) {
         List<Question> questions = quizService.getQuizById(quizId).getQuestions();
         if (questions.size() == 0) {
-            model.addAttribute("quizId", quizId);
-            return "questions/no-questions";
+            model.addAttribute("message","This quiz has no questions yet.");
         }
         model.addAttribute("questions", questions);
-
+        model.addAttribute("quizId", quizId);
         return "questions/question-list";
     }
-
-//    @RequestMapping("create/{quizId}")
-//    public String create(@PathVariable("quizId") Long quizId){
-//        Question question = new Question();
-//        question.setQuiz(quizService.getQuizById(quizId));
-//        questionService.createQuestion(question);
-//        return "question-list";
-//    }
 
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public String create(@RequestParam("answers") String[] answerTexts,
@@ -56,9 +49,9 @@ public class QuestionController {
         Question question = new Question();
         question.setText(text);
         List<Answer> answers = new ArrayList<Answer>();
-        for(String answerText : answerTexts){
+        for (String answerText : answerTexts) {
             Answer ans = new Answer();
-            ans.setText(text);
+            ans.setText(answerText);
             answers.add(ans);
         }
         question.setAnswers(answers);
@@ -66,6 +59,12 @@ public class QuestionController {
         question.setQuiz(quiz);
         questionService.createQuestion(question);
 
-        return "redirect:/questions/"+quizId;
+        return "redirect:/quizzes/" + quizId + "/questions/";
+    }
+
+    @RequestMapping("{questionId}/edit")
+    public String edit(@PathVariable("questionId") Long questionId, ModelMap model){
+        model.addAttribute("question", questionService.getQuestionById(questionId));
+        return "question-edit";
     }
 }

@@ -38,11 +38,6 @@
         <input type="text" class="form-control" name="title" value="${quiz.title}" id="quiz-title">
     </div>
     <div class="form-group">
-        <a href="/questions/create/${quiz.id}">
-            <button class="btn btn-primary">Add question</button>
-        </a>
-    </div>
-    <div class="form-group">
         <input type="hidden" class="form-control" name="quizId" value="${quiz.id}">
     </div>
     <button type="submit" class="btn btn-primary col-xs-12">Edit</button>

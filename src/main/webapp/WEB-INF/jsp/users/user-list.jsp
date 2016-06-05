@@ -62,7 +62,7 @@
     </div>
 </div>
 
-<table class="table table-striped text-center all-items">
+<table class="table table-striped text-center list-items table-hover">
     <tr>
         <th class="col-xs-2 text-center">Username:</th>
         <th class="col-xs-3 text-center">E-mail address:</th>
