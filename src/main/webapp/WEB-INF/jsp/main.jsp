@@ -10,5 +10,6 @@
 <body>
 <a href="users">Manage users</a><br>
 <a href="quizzes">Manage quizzes</a>
+<a href="quizzes">Manage news</a>
 </body>
 </html>
