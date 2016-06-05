@@ -1,40 +1,40 @@
 package sekta.platform.core.entity;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Retro on 14.05.2016.
  */
 
 @Entity
-@Table(name="users_table")
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
+    private Long userId;
 
-    @Column(name="email")
     private String email;
 
-    @Column(name="user_name")
     private String userName;
 
-    @Column(name="password")
     private String password;
 
     @OneToMany(mappedBy = "user")
-    private Set<Grade> gradeSet= new HashSet<Grade>();
+    private List<Grade> grades = new ArrayList<Grade>();
 
     @OneToMany(mappedBy = "user")
-    private Set<Message> messageSet= new HashSet<Message>();
-
+    private List<Message> messages = new ArrayList<Message>();
 
     public User() {}
 
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
 
     public String getEmail() {
         return email;
@@ -60,27 +60,19 @@ public class User {
         this.password = password;
     }
 
-    public long getId() {
-        return id;
+    public List<Grade> getGrades() {
+        return grades;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setGrades(List<Grade> grades) {
+        this.grades = grades;
     }
 
-    public Set<Grade> getGradeSet() {
-        return gradeSet;
+    public List<Message> getMessages() {
+        return messages;
     }
 
-    public void setGradeSet(Set<Grade> gradeSet) {
-        this.gradeSet = gradeSet;
-    }
-
-    public Set<Message> getMessageSet() {
-        return messageSet;
-    }
-
-    public void setMessageSet(Set<Message> messageSet) {
-        this.messageSet = messageSet;
+    public void setMessages(List<Message> messages) {
+        this.messages = messages;
     }
 }

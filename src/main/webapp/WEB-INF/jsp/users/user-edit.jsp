@@ -26,12 +26,11 @@
         <label for="user-name">Username</label>
         <input type="text" class="form-control" name="userName" value="${user.userName}" id="user-name">
     </div>
-    <label for="email">E-mail</label>
-    <input type="email" class="form-control" name="email" value="${user.email}" id="email">
-    </div>
     <div class="form-group">
-        <input type="hidden" class="form-control" name="id" value="${user.id}">
+        <label for="email">E-mail</label>
+        <input type="email" class="form-control" name="email" value="${user.email}" id="email">
     </div>
+    <input type="hidden" class="form-control" name="userId" value="${user.userId}">
     <button type="submit" class="btn btn-primary col-xs-12">Edit</button>
 </form>
 </body>

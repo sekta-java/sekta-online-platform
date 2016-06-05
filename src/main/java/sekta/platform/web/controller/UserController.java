@@ -14,6 +14,8 @@ import sekta.platform.core.service.UserService;
 @Controller
 @RequestMapping("users")
 public class UserController {
+    public static final String PATH_VARIABLE_USER_ID = "user_id";
+
     @Autowired
     private UserService userService;
 
@@ -37,28 +39,24 @@ public class UserController {
     }
 
 
-    @RequestMapping(value = "delete", method = RequestMethod.POST)
-    public String delete(@RequestParam("id") Long id, RedirectAttributes redirectAttributes){
-        userService.deleteUser(id);
-        redirectAttributes.addFlashAttribute("message", "User successfully deleted!");
+    @RequestMapping(value = "{" + PATH_VARIABLE_USER_ID + "}/delete", method = RequestMethod.POST)
+    public String delete(@PathVariable(PATH_VARIABLE_USER_ID) Long userId, RedirectAttributes redirectAttributes){
+        User user = userService.getUserById(userId);
+        userService.deleteUser(userId);
+        redirectAttributes.addFlashAttribute("message", user.getUserName() + " has successfully deleted!");
         return "redirect:/users";
     }
 
-    @RequestMapping(value = "edit/{id}", method = RequestMethod.GET)
-    public String editUser(@PathVariable("id") Long id, ModelMap model){
-        User user = userService.getUserById(id);
+    @RequestMapping(value = "{" + PATH_VARIABLE_USER_ID + "}/edit", method = RequestMethod.GET)
+    public String editUser(@PathVariable(PATH_VARIABLE_USER_ID) Long userId, ModelMap model){
+        User user = userService.getUserById(userId);
         model.addAttribute(user);
         return "users/user-edit";
     }
 
     @RequestMapping(value = "edit", method = RequestMethod.POST)
-    public String updateUser(@RequestParam("id") Long id,
-                             @RequestParam("userName") String userName,
-                             @RequestParam("email") String email,
+    public String updateUser(@ModelAttribute User user,
                              RedirectAttributes redirectAttributes){
-        User user = userService.getUserById(id);
-        user.setUserName(userName);
-        user.setEmail(email);
         userService.updateUser(user);
         redirectAttributes.addFlashAttribute("message", "User successfully edited!");
         return "redirect:/users";

@@ -45,7 +45,7 @@
                         <select class="form-control" name="userId" id="user-name" required>
                             <option selected disabled></option>
                             <c:forEach var="user" items="${users}">
-                            <option value="${user.id}">${user.userName}</option>
+                            <option value="${user.userId}">${user.userName}</option>
                             </c:forEach>
                         </select>
                     </div>
@@ -59,7 +59,7 @@
                         <input type="text" class="form-control" name="comment" value="${grade.comment}" id="comment" >
                     </div>
                     <div class="form-group">
-                        <input type="hidden" class="form-control" name="id" value="${user.id}">
+                        <input type="hidden" class="form-control" name="userId" value="${user.userId}">
                     </div>
                     <button type="submit" class="btn btn-primary col-xs-12">Add</button>
                 </form>

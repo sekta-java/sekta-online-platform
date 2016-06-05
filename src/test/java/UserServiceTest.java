@@ -7,8 +7,6 @@ import sekta.platform.Application;
 import sekta.platform.core.entity.User;
 import sekta.platform.core.service.UserService;
 
-import java.util.List;
-
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
 
@@ -37,10 +35,10 @@ public class UserServiceTest {
         User testUser = new User();
 
         userService.createUser(testUser);
-        Long id = testUser.getId();
+        Long id = testUser.getUserId();
         User userFromDb = userService.getUserById(id);
 
-        assertThat(userFromDb.getId(), equalTo(testUser.getId()));
+        assertThat(userFromDb.getUserId(), equalTo(testUser.getUserId()));
     }
 
     @Test
@@ -48,8 +46,8 @@ public class UserServiceTest {
         User user = new User();
 
         userService.createUser(user);
-        userService.deleteUser(user.getId());
+        userService.deleteUser(user.getUserId());
 
-        assertThat(userService.getUserById(user.getId()), equalTo(null));
+        assertThat(userService.getUserById(user.getUserId()), equalTo(null));
     }
 }

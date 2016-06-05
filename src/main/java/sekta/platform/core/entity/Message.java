@@ -8,18 +8,13 @@ import javax.persistence.*;
  */
 
 @Entity
-@Table(name="message_table")
 public class Message {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
     private Long messageId;
 
-    @Column(name = "message")
     private String message;
 
-    @Column(name = "date_stamp")
     private String createdAt;
 
     @ManyToOne
@@ -30,15 +25,14 @@ public class Message {
     @JoinColumn(name="user_id")
     private User user;
 
-
     public Message() {
     }
 
-    public long getMessageId() {
+    public Long getMessageId() {
         return messageId;
     }
 
-    public void setMessageId(long id_message) {
+    public void setMessageId(Long id_message) {
         this.messageId = id_message;
     }
 

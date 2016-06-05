@@ -15,7 +15,6 @@ import sekta.platform.core.service.GradeService;
 import sekta.platform.core.service.UserService;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 
 @Controller
@@ -43,7 +42,7 @@ public class GradeController {
         Grade grade = new Grade();
 
         User user = new User();
-        user.setId(userId);
+        user.setUserId(userId);
         grade.setUser(user);
 
         grade.setGrade(gradeValue);
