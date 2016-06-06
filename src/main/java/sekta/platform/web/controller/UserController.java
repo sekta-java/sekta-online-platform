@@ -1,3 +1,4 @@
+
 package sekta.platform.web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import sekta.platform.core.entity.User;
+import sekta.platform.core.service.RatingService;
 import sekta.platform.core.service.UserService;
 
 /**
@@ -17,8 +19,12 @@ import sekta.platform.core.service.UserService;
 @Controller
 @RequestMapping("users")
 public class UserController {
+
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private RatingService ratingService;
 
     @RequestMapping("")
     public String showAll(ModelMap model){
@@ -71,5 +77,11 @@ public class UserController {
         userService.updateUser(user);
         redirectAttributes.addFlashAttribute("message", "User successfully edited!");
         return "redirect:/users";
+    }
+
+    @RequestMapping("ratings")
+    public String showAllRatings(ModelMap model){
+        model.addAttribute("usersWithRating", ratingService.getAllUsersWithRating());
+        return "users/ratings/rating-list";
     }
 }
