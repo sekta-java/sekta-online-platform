@@ -35,7 +35,7 @@ public class QuestionController {
                                       ModelMap model) {
         List<Question> questions = quizService.getQuizById(quizId).getQuestions();
         if (questions.size() == 0) {
-            model.addAttribute("message","This quiz has no questions yet.");
+            model.addAttribute("message", "This quiz has no questions yet.");
         }
         model.addAttribute("questions", questions);
         model.addAttribute("quizId", quizId);
@@ -48,13 +48,7 @@ public class QuestionController {
                          @RequestParam("text") String text) {
         Question question = new Question();
         question.setText(text);
-        List<Answer> answers = new ArrayList<Answer>();
-        for (String answerText : answerTexts) {
-            Answer ans = new Answer();
-            ans.setText(answerText);
-            answers.add(ans);
-        }
-        question.setAnswers(answers);
+        question.setAnswers(getAnswersFromStringArray(answerTexts));
         Quiz quiz = quizService.getQuizById(quizId);
         question.setQuiz(quiz);
         questionService.createQuestion(question);
@@ -63,8 +57,36 @@ public class QuestionController {
     }
 
     @RequestMapping("{questionId}/edit")
-    public String edit(@PathVariable("questionId") Long questionId, ModelMap model){
-        model.addAttribute("question", questionService.getQuestionById(questionId));
-        return "question-edit";
+    public String edit(@PathVariable("questionId") Long questionId, ModelMap model) {
+        Question question = questionService.getQuestionById(questionId);
+        model.addAttribute("question", question);
+        return "questions/question-edit";
+    }
+
+    @RequestMapping(value = "edit", method = RequestMethod.POST)
+    public String update(@RequestParam("questionId") Long questionId,
+                         @RequestParam("questionText") String text,
+                         @RequestParam("answers") String[] answersTexts,
+                         @RequestParam("quizId") Long quizId) {
+        Question question = questionService.getQuestionById(questionId);
+        question.setText(text);
+        question.setAnswers(getAnswersFromStringArray(answersTexts));
+        questionService.updateQuestion(question);
+        return "redirect:/quizzes/" + quizId + "/questions/";
+    }
+
+    @RequestMapping("${questionId}/answers/create")
+    public String createAnswer(){
+
+    }
+
+    private List<Answer> getAnswersFromStringArray(String[] answerTexts) {
+        List<Answer> answers =  new ArrayList<Answer>();
+        for (String answerText : answerTexts) {
+            Answer ans = new Answer();
+            ans.setText(answerText);
+            answers.add(ans);
+        }
+        return answers;
     }
 }

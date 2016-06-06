@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import sekta.platform.core.dao.QuestionDao;
+import sekta.platform.core.entity.Answer;
 import sekta.platform.core.entity.Question;
 import sekta.platform.core.service.QuestionService;
 
@@ -18,13 +19,17 @@ public class QuestionServiceImpl implements QuestionService {
     private QuestionDao questionDao;
 
     @Override
+    @Transactional
     public List<Question> getAllQuestions() {
         return questionDao.findAll();
     }
 
     @Override
+    @Transactional
     public Question getQuestionById(Long id) {
-        return questionDao.getById(id);
+        Question question = questionDao.getById(id);
+        question.getAnswers().size();
+        return question;
     }
 
     @Override
