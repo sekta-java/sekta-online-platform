@@ -11,6 +11,6 @@
 <a href="users">Manage users</a><br>
 <a href="quizzes">Manage quizzes</a><br>
 <a href="grades">Manage grades</a><br>
-<a href="ratings">Ratings</a>
+<a href="users/ratings">Ratings</a>
 </body>
 </html>
