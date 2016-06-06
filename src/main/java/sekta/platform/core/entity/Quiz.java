@@ -1,6 +1,7 @@
 package sekta.platform.core.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -12,7 +13,7 @@ public class Quiz {
     private String title;
 
     @OneToMany(mappedBy =  "quiz")
-    private List<Question> questions;
+    private List<Question> questions = new ArrayList<Question>();
 
     @ManyToOne
     @JoinColumn(name = "creator_id")

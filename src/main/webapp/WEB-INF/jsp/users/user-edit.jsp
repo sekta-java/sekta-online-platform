@@ -22,14 +22,13 @@
 </head>
 <body class="container">
 
-<form action="/users/edit" method="post" class="col-xs-offset-4 col-xs-4 edit-page">
+<form action="/users/edit" method="post" class="col-xs-offset-4 col-xs-4">
     <div class="form-group">
         <label for="user-name">Username</label>
         <input type="text" class="form-control" name="userName" value="${user.userName}" id="user-name">
     </div>
-    <div class="form-group">
-        <label for="email">E-mail</label>
-        <input type="email" class="form-control" name="email" value="${user.email}" id="email">
+    <label for="email">E-mail</label>
+    <input type="email" class="form-control" name="email" value="${user.email}" id="email">
     </div>
     <div class="form-group">
         <input type="hidden" class="form-control" name="id" value="${user.id}">

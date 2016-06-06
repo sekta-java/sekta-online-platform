@@ -5,21 +5,15 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "grade_table")
 public class Grade {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
     private Long id;
 
-    @Column(name="grade")
     private Integer grade;
 
-    @Column(name = "comment")
     private String comment;
 
-    @Column(name = "date")
     private LocalDate date;
 
     @ManyToOne
@@ -29,20 +23,20 @@ public class Grade {
     public Grade() {
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public LocalDate getDate() {
         return date;
     }
 
     public void setDate(LocalDate date) {
         this.date = date;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public int getGrade() {

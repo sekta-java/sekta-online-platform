@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public void deleteUser(Long id) {
         User user = new User();
-        user.setId(id);
+        user.setUserId(id);
         userDao.delete(user);
     }
 }

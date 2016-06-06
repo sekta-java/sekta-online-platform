@@ -3,10 +3,7 @@ package sekta.platform.web.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import sekta.platform.core.entity.User;
 import sekta.platform.core.service.UserService;
@@ -17,6 +14,8 @@ import sekta.platform.core.service.UserService;
 @Controller
 @RequestMapping("users")
 public class UserController {
+    public static final String PATH_VARIABLE_USER_ID = "user_id";
+
     @Autowired
     private UserService userService;
 
@@ -27,14 +26,8 @@ public class UserController {
     }
 
     @RequestMapping(value = "create", method = RequestMethod.POST)
-    public String createUser(@RequestParam("userName") String userName,
-                             @RequestParam("email") String email,
-                             @RequestParam("password") String password,
+    public String createUser(@ModelAttribute(value = "user") User user,
                              RedirectAttributes redirectAttributes){
-        User user = new User();
-        user.setUserName(userName);
-        user.setEmail(email);
-        user.setPassword(password);
         userService.createUser(user);
         redirectAttributes.addFlashAttribute("message", "User successfully created!");
         return "redirect:/users";
@@ -46,28 +39,24 @@ public class UserController {
     }
 
 
-    @RequestMapping(value = "delete", method = RequestMethod.POST)
-    public String delete(@RequestParam("id") Long id, RedirectAttributes redirectAttributes){
-        userService.deleteUser(id);
-        redirectAttributes.addFlashAttribute("message", "User successfully deleted!");
+    @RequestMapping(value = "{" + PATH_VARIABLE_USER_ID + "}/delete", method = RequestMethod.POST)
+    public String delete(@PathVariable(PATH_VARIABLE_USER_ID) Long userId, RedirectAttributes redirectAttributes){
+        User user = userService.getUserById(userId);
+        userService.deleteUser(userId);
+        redirectAttributes.addFlashAttribute("message", user.getUserName() + " has successfully deleted!");
         return "redirect:/users";
     }
 
-    @RequestMapping(value = "edit/{id}", method = RequestMethod.GET)
-    public String editUser(@PathVariable("id") Long id, ModelMap model){
-        User user = userService.getUserById(id);
+    @RequestMapping(value = "{" + PATH_VARIABLE_USER_ID + "}/edit", method = RequestMethod.GET)
+    public String editUser(@PathVariable(PATH_VARIABLE_USER_ID) Long userId, ModelMap model){
+        User user = userService.getUserById(userId);
         model.addAttribute(user);
         return "users/user-edit";
     }
 
     @RequestMapping(value = "edit", method = RequestMethod.POST)
-    public String updateUser(@RequestParam("id") Long id,
-                             @RequestParam("userName") String userName,
-                             @RequestParam("email") String email,
+    public String updateUser(@ModelAttribute User user,
                              RedirectAttributes redirectAttributes){
-        User user = userService.getUserById(id);
-        user.setUserName(userName);
-        user.setEmail(email);
         userService.updateUser(user);
         redirectAttributes.addFlashAttribute("message", "User successfully edited!");
         return "redirect:/users";

@@ -26,7 +26,7 @@
 
 <!-- Trigger the modal with a button -->
 <div class="create-button">
-<button type="button" class="btn btn-primary col-xs-2" data-toggle="modal" data-target="#myModal">New user</button>
+    <button type="button" class="btn btn-primary col-xs-2" data-toggle="modal" data-target="#myModal">New user</button>
 </div>
 <p class="text-center text-success col-offset-xs-12 bg-success flash-message">${message}</p>
 <!-- Modal -->
@@ -47,7 +47,8 @@
                     </div>
                     <div class="form-group">
                         <label for="email">E-mail</label>
-                        <input type="email" class="form-control" name="email" id="email" placeholder="peter.ivanov@gmail.com">
+                        <input type="email" class="form-control" name="email" id="email"
+                               placeholder="peter.ivanov@gmail.com">
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
@@ -71,17 +72,20 @@
     </tr>
 
     <c:forEach items="${users}" var="user">
-    <tr>
+        <tr>
             <td>${user.userName}</td>
             <td>${user.email}</td>
-        <td><a href="/users/edit/${user.id}"><i class="glyphicon glyphicon-pencil" style="color: #d9b144;"></i></a></td>
-        <td>
-            <form action="/users/delete" method="post">
-                <input type="hidden" name="id" value="${user.id}">
-            <button type="submit" style="height: 0; border: 0; padding: 0;"><i class="glyphicon glyphicon-remove" style="color: #d90000;"></i></button>
-            </form>
-        </td>
-    </tr>
+            <td>
+                <a href="/users/${user.userId}/edit"><i class="glyphicon glyphicon-pencil" style="color: #d9b144;"></i></a>
+            </td>
+            <td>
+                <form action="/users/${user.userId}/delete" method="post">
+                    <button type="submit" style="height: 0; border: 0; padding: 0;">
+                        <i class="glyphicon glyphicon-remove" style="color: #d90000;"></i>
+                    </button>
+                </form>
+            </td>
+        </tr>
     </c:forEach>
 </table>
 

@@ -1,7 +1,9 @@
 package sekta.platform.core.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -9,29 +11,25 @@ import java.util.Set;
  */
 
 @Entity
-@Table(name = "forum_category_table")
 public class ForumCategory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
 
-    @Column(name="title")
     private String title;
 
     @OneToMany(mappedBy = "forumCategory")
-    private Set<Message> messageSet= new HashSet<Message>();
-
+    private List<Message> messages= new ArrayList<Message>();
 
     public ForumCategory() {
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -43,11 +41,11 @@ public class ForumCategory {
         this.title = title;
     }
 
-    public Set<Message> getMessageSet() {
-        return messageSet;
+    public List<Message> getMessages() {
+        return messages;
     }
 
-    public void setMessageSet(Set<Message> messageSet) {
-        this.messageSet = messageSet;
+    public void setMessages(List<Message> messages) {
+        this.messages = messages;
     }
 }
