@@ -32,11 +32,11 @@
         <th class="col-xs-3 text-center"></th>
     </tr>
 
-    <c:forEach items="${grades}" var="grade">
+    <c:forEach items="${usersWithRating}" var="user">
     <tr>
         <td></td>
-        <td>${grade.grade}</td>
-        <td>${grade.user.userName}</td>
+        <td>${user.rating}</td>
+        <td>${user.userName}</td>
         <td></td>
     </tr>
     </c:forEach>
