@@ -39,15 +39,13 @@ public class QuizController {
 
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public String create(@RequestParam("userId") Long creatorId,
-                         @RequestParam("title") String title,
-                         ModelMap model,
-                         RedirectAttributes redirectAttributes){
+                         @RequestParam("title") String title){
         Quiz quiz = new Quiz();
         quiz.setCreator(userService.getUserById(creatorId));
         quiz.setTitle(title);
         quizService.createQuiz(quiz);
-        redirectAttributes.addAttribute("quizId", quiz.getId());
-        return "redirect:/questions/create/{quizId}";
+        Long quizId = quiz.getId();
+        return "redirect:/quizzes/" + quizId + "/questions/create/";
     }
      @RequestMapping("edit/{quizId}")
     public String editQuiz(@PathVariable("quizId") Long quizId, ModelMap model){

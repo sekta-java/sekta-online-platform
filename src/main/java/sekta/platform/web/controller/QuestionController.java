@@ -11,6 +11,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import sekta.platform.core.entity.Answer;
 import sekta.platform.core.entity.Question;
 import sekta.platform.core.entity.Quiz;
+import sekta.platform.core.service.AnswerService;
 import sekta.platform.core.service.QuestionService;
 import sekta.platform.core.service.QuizService;
 
@@ -30,16 +31,25 @@ public class QuestionController {
     @Autowired
     private QuizService quizService;
 
+    @Autowired
+    private AnswerService answerService;
+
     @RequestMapping("")
     public String showQuestionsByQuiz(@PathVariable("quizId") Long quizId,
                                       ModelMap model) {
         List<Question> questions = quizService.getQuizById(quizId).getQuestions();
-        if (questions.size() == 0) {
+        if (questions.size() == 0 && !model.containsAttribute("message")) {
             model.addAttribute("message", "This quiz has no questions yet.");
         }
         model.addAttribute("questions", questions);
         model.addAttribute("quizId", quizId);
         return "questions/question-list";
+    }
+
+    @RequestMapping(value = "create", method = RequestMethod.GET)
+    public String showCreateQuestionForm(@PathVariable("quizId") Long quizId, ModelMap model) {
+        model.addAttribute("quizId", quizId);
+        return "questions/question-create";
     }
 
     @RequestMapping(value = "create", method = RequestMethod.POST)
@@ -48,17 +58,20 @@ public class QuestionController {
                          @RequestParam("text") String text) {
         Question question = new Question();
         question.setText(text);
-        question.setAnswers(getAnswersFromStringArray(answerTexts));
-        Quiz quiz = quizService.getQuizById(quizId);
+        List<Answer> answers = getAnswersFromStringArray(answerTexts, question);
+        question.setAnswers(answers);
+        Quiz quiz = new Quiz();
+        quiz.setId(quizId);
         question.setQuiz(quiz);
         questionService.createQuestion(question);
-
         return "redirect:/quizzes/" + quizId + "/questions/";
     }
 
     @RequestMapping("{questionId}/edit")
     public String edit(@PathVariable("questionId") Long questionId, ModelMap model) {
         Question question = questionService.getQuestionById(questionId);
+        List<Answer> answers = question.getAnswers();
+        model.addAttribute("answers", answers);
         model.addAttribute("question", question);
         return "questions/question-edit";
     }
@@ -70,21 +83,46 @@ public class QuestionController {
                          @RequestParam("quizId") Long quizId) {
         Question question = questionService.getQuestionById(questionId);
         question.setText(text);
-        question.setAnswers(getAnswersFromStringArray(answersTexts));
+        question.setAnswers(getAnswersFromStringArray(answersTexts, question));
         questionService.updateQuestion(question);
         return "redirect:/quizzes/" + quizId + "/questions/";
     }
 
-    @RequestMapping("${questionId}/answers/create")
-    public String createAnswer(){
-
+    @RequestMapping(value = "{questionId}/answers/create", method = RequestMethod.GET)
+    public String showForm(@PathVariable("questionId") Long questionId,
+                           ModelMap model) {
+        Question question = questionService.getQuestionById(questionId);
+        model.addAttribute("question", question);
+        return "questions/answer-create";
     }
 
-    private List<Answer> getAnswersFromStringArray(String[] answerTexts) {
-        List<Answer> answers =  new ArrayList<Answer>();
+    @RequestMapping(value = "{questionId}/answers/create", method = RequestMethod.POST)
+    public String createAnswer(@PathVariable("questionId") Long questionId,
+                               @RequestParam("answerText") String answerText) {
+        Question question = questionService.getQuestionById(questionId);
+        Answer answer = new Answer();
+        answer.setText(answerText);
+        answer.setQuestion(question);
+        answerService.createAnswer(answer);
+        Long quizId = question.getQuiz().getId();
+        return "redirect:/quizzes/" + quizId + "/questions";
+    }
+
+    @RequestMapping(value = "delete", method = RequestMethod.POST)
+    public String deleteQuestion(@RequestParam("questionId") Long questionId,
+                                 RedirectAttributes redirectAttributes) {
+        Long quizId = questionService.getQuestionById(questionId).getQuiz().getId();
+        questionService.deleteQuestion(questionId);
+        redirectAttributes.addFlashAttribute("message", "Question successfully deleted!");
+        return "redirect:/quizzes/" + quizId + "/questions";
+    }
+
+    private List<Answer> getAnswersFromStringArray(String[] answerTexts, Question question) {
+        List<Answer> answers = new ArrayList<Answer>();
         for (String answerText : answerTexts) {
             Answer ans = new Answer();
             ans.setText(answerText);
+            ans.setQuestion(question);
             answers.add(ans);
         }
         return answers;
