@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import sekta.platform.core.dao.QuizDao;
 import sekta.platform.core.dao.UserDao;
+import sekta.platform.core.entity.Question;
 import sekta.platform.core.entity.Quiz;
 import sekta.platform.core.entity.User;
 import sekta.platform.core.service.QuizService;
@@ -37,8 +38,12 @@ public class QuizServiceImpl implements QuizService {
     public Quiz getQuizById(Long id) {
         Quiz quiz = quizDao.getById(id);
         quiz.getQuestions().size();
-        quiz.getCreator().getGradeSet().size();
-        quiz.getCreator().getMessageSet().size();
+        List<Question> questions = quiz.getQuestions();
+        for (Question question : questions){
+            question.getAnswers().size();
+        }
+        quiz.getCreator().getGrades().size();
+        quiz.getCreator().getMessages().size();
         return quiz;
     }
 
@@ -53,6 +58,11 @@ public class QuizServiceImpl implements QuizService {
     @Transactional
     public Quiz updateQuiz(Quiz quiz) {
         quizDao.update(quiz);
+        List<Question> questions = quiz.getQuestions();
+        questions.size();
+        for(Question question : questions){
+            question.getAnswers().size();
+        }
         return quiz;
     }
 

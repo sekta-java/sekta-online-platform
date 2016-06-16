@@ -10,7 +10,7 @@ import sekta.platform.core.entity.User;
 @Repository
 public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao{
     @Override
-    public User getById(Long id) {
-        return (User) sessionFactory.getCurrentSession().get(User.class, id);
+    public User getById(Long userId) {
+        return (User) sessionFactory.getCurrentSession().get(User.class, userId);
     }
 }

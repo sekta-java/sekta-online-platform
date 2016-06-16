@@ -1,6 +1,7 @@
 package sekta.platform.core.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import sekta.platform.core.dao.AnswerDao;
 import sekta.platform.core.entity.Answer;
@@ -11,6 +12,8 @@ import java.util.List;
 /**
  * Created by natad on 29.05.2016.
  */
+@Service
+
 public class AnswerServiceImpl implements AnswerService {
     @Autowired
     AnswerDao answerDao;
